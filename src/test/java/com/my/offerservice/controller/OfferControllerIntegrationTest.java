@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.my.offerservice.BaseMvcIntegrationTest;
 import com.my.offerservice.dto.OfferRequest;
 import com.my.offerservice.model.Product;
-import com.my.offerservice.repository.OfferRepository;
 import com.my.offerservice.repository.ProductRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,9 +17,7 @@ import java.math.BigDecimal;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -145,6 +142,7 @@ public class OfferControllerIntegrationTest extends BaseMvcIntegrationTest {
 
 
     private void createOffer() throws Exception {
+        //given
         Long id = productRepository.findAll().get(0).getId();
 
         OfferRequest offerRequest = new OfferRequest();

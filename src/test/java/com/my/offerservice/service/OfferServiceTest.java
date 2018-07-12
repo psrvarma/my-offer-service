@@ -72,7 +72,6 @@ public class OfferServiceTest {
         OfferResponse offerResponse = offerService.createOffer(request);
 
         // then
-
         Assert.assertThat(offerResponse.getDescription(), is("TEST"));
         Assert.assertThat(offerResponse.getPrice().longValue(), equalTo(500l));
 
@@ -111,9 +110,8 @@ public class OfferServiceTest {
     }
 
     @Test(expected = OfferException.class)
-    public void shouldThrowExceptonWhenTheAssociatedProductDoesNotExist() {
+    public void shouldThrowExceptionWhenTheAssociatedProductDoesNotExist() {
         // given
-
         OfferRequest offerRequest = new OfferRequest();
         offerRequest.setProductId(99l);
         offerRequest.setOfferLengthOfDays(100);
@@ -141,13 +139,12 @@ public class OfferServiceTest {
         offerRequest.setProductId(product.getId());
         offerRequest.setOfferLengthOfDays(100);
         offerRequest.setOfferPrice(new BigDecimal(500));
-        offerRequest.setDescription("TEST");
+        offerRequest.setDescription("TEST1");
 
-        // when
         OfferResponse offerResponse = offerService.createOffer(offerRequest);
 
         //then
-        Assert.assertThat(offerResponse.getDescription(), is("TEST"));
+        Assert.assertThat(offerResponse.getDescription(), is("TEST1"));
         Assert.assertThat(offerResponse.getPrice().longValue(), equalTo(500l));
 
         verify(offerRepository, times(1)).save(offerArgumentCaptor.capture());
@@ -156,7 +153,7 @@ public class OfferServiceTest {
         Offer offerArgument = offerArgumentCaptor.getValue();
         Product productArgument = productArgumentCaptor.getValue();
 
-        Assert.assertThat(offerArgument.getDescription(), equalTo("TEST"));
+        Assert.assertThat(offerArgument.getDescription(), equalTo("TEST1"));
         Assert.assertThat(productArgument.getId(), equalTo(1l));
     }
 

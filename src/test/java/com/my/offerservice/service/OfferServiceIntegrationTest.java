@@ -55,7 +55,7 @@ public class OfferServiceIntegrationTest extends BaseSpringIntegrationTest {
         Assert.assertThat(offerResponse.getId().longValue(), not(equalTo(nullValue())));
     }
 
-    @Test(expected = OfferException.class)
+    @Test(expected = OfferException.class) //then
     public void shouldNotCreateAnOfferWhenAnOfferIsActiveAndNotExpired() {
         // given
         OfferRequest offerRequest = new OfferRequest();
@@ -71,10 +71,11 @@ public class OfferServiceIntegrationTest extends BaseSpringIntegrationTest {
         offerRequest.setOfferLengthOfDays(100);
         offerRequest.setOfferPrice(new BigDecimal(500));
         offerRequest.setDescription("TEST");
+
         offerService.createOffer(offerRequest);
     }
 
-    @Test(expected = OfferException.class)
+    @Test(expected = OfferException.class) // then
     public void shouldThrowExceptionWhenTheAssociatedProductDoesNotExist() {
         // given
         OfferRequest offerRequest = new OfferRequest();
@@ -82,7 +83,6 @@ public class OfferServiceIntegrationTest extends BaseSpringIntegrationTest {
         offerRequest.setOfferLengthOfDays(100);
         offerRequest.setOfferPrice(new BigDecimal(500));
         offerRequest.setDescription("TEST");
-        offerService.createOffer(offerRequest);
 
         // when
         offerService.createOffer(offerRequest);
