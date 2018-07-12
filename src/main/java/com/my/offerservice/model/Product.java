@@ -2,6 +2,7 @@ package com.my.offerservice.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,7 +18,11 @@ public class Product {
 
     private List<Offer> offers;
 
+    @Id
     @Column(name = "ID")
+    @GeneratedValue(
+            strategy = GenerationType.AUTO
+    )
     public Long getId() {
         return id;
     }
@@ -50,6 +55,9 @@ public class Product {
             cascade = {CascadeType.ALL}
     )
     public List<Offer> getOffers() {
+        if (offers == null) {
+            offers = new ArrayList<>();
+        }
         return offers;
     }
 

@@ -1,0 +1,25 @@
+spring:
+  profiles: development
+
+merchant:
+  datasource:
+    url: jdbc:h2:mem:mechantdb;DB_CLOSE_DELAY=-1
+    vendor: H2
+    username: sa
+    password:
+  jpa:
+    schemaUpdate: true
+
+---
+
+spring:
+  profiles: test
+
+merchant:
+  datasource:
+    url: jdbc:h2:mem:mechantdb;DB_CLOSE_DELAY=-1
+    vendor: H2
+    username: sa
+    password:
+  jpa:
+    schemaUpdate: true

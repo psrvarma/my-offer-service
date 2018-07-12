@@ -1,2 +1,7 @@
 .idea/**/*.xml
 .idea/**/libraries
+
+
+my-offer-service.iml
+
+target/**
